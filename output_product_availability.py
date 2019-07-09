@@ -25,22 +25,19 @@ class ProductScraper:
 		table = table.prettify().split('\n')
 		#print(type(table), len(table))
 		
+		bool_set = False
 		for term in table:
 			term = term.strip(" ").strip("\t")
 			
-			try:
-				if term == search_term:
-					bool_set = True
-					continue
-			except:
+			if term == search_term:
+				bool_set = True
 				continue
+			if bool_set and term != "Sold out":
+				if term == "</span>":
+					break
+				send_sms.send_alert()
+				bool_set = False
 				
-			#once found the html tag line, this statement will go through
-			if bool_set:
-				if term != "Sold out":
-					send_sms.send_alert()
-					self.sold_out = False
-					
 				
 	def output_result(self):
 		self._check_product_availabilty();
