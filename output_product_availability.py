@@ -7,7 +7,7 @@ class ProductScraper:
 	
 	def __init__(self):
 		#boolean to see if sold out or not
-		self.sold_out = False
+		self.sold_out = True
 	
 	def _check_product_availabilty(self):
 		base_url = "https://www.holotaco.com/products/holo-taco-launch-collection"
@@ -37,9 +37,9 @@ class ProductScraper:
 				
 			#once found the html tag line, this statement will go through
 			if bool_set:
-				if term == "Sold out":
+				if term != "Sold out":
 					send_sms.send_alert()
-					self.sold_out = True
+					self.sold_out = False
 					
 				
 	def output_result(self):
