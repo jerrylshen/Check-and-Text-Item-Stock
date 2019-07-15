@@ -4,6 +4,7 @@ import requests
 import send_sms
 import time
 
+#Specific to PythonAnywhere Always On Task setup; If no delay, this task would be stuck in a starting loop
 time.sleep(120)
 
 class ProductScraper:
