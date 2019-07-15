@@ -2,6 +2,9 @@ from urllib.request import urlopen
 import bs4
 import requests
 import send_sms
+import time
+
+time.sleep(120)
 
 class ProductScraper:
 	
